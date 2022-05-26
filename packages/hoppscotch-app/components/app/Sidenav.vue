@@ -39,21 +39,21 @@ const primaryNavigation = [
     svg: "link-2",
     title: t("navigation.rest"),
   },
-  {
-    target: "graphql",
-    svg: "graphql",
-    title: t("navigation.graphql"),
-  },
-  {
-    target: "realtime",
-    svg: "globe",
-    title: t("navigation.realtime"),
-  },
-  {
-    target: "documentation",
-    svg: "book-open",
-    title: t("navigation.doc"),
-  },
+  // {
+  //   target: "graphql",
+  //   svg: "graphql",
+  //   title: t("navigation.graphql"),
+  // },
+  // {
+  //   target: "realtime",
+  //   svg: "globe",
+  //   title: t("navigation.realtime"),
+  // },
+  // {
+  //   target: "documentation",
+  //   svg: "book-open",
+  //   title: t("navigation.doc"),
+  // },
   {
     target: "settings",
     svg: "settings",

@@ -55,6 +55,7 @@ export default defineComponent({
         this.$toast.error(this.$t("request.invalid_name"))
         return
       }
+      console.log(123,'asfas')
       this.$emit("submit", this.requestUpdateData)
       this.hideModal()
     },

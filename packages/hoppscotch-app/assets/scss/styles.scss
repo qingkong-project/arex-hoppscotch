@@ -468,3 +468,7 @@ details summary::-webkit-details-marker {
     margin-bottom: env(safe-area-inset-bottom);
   }
 }
+
+#webpack-hot-middleware-clientOverlay{
+  display: none;
+}

@@ -20,48 +20,48 @@
         @update-collection-type="updateCollectionType"
         @update-selected-team="updateSelectedTeam"
       />
-      <div class="flex flex-1 justify-between">
-        <ButtonSecondary
-          v-if="
-            collectionsType.type == 'team-collections' &&
-            (collectionsType.selectedTeam == undefined ||
-              collectionsType.selectedTeam.myRole == 'VIEWER')
-          "
-          v-tippy="{ theme: 'tooltip' }"
-          disabled
-          class="!rounded-none"
-          svg="plus"
-          :title="$t('team.no_access')"
-          :label="$t('action.new')"
-        />
-        <ButtonSecondary
-          v-else
-          svg="plus"
-          :label="$t('action.new')"
-          class="!rounded-none"
-          @click.native="displayModalAdd(true)"
-        />
-        <span class="flex">
-          <ButtonSecondary
-            v-tippy="{ theme: 'tooltip' }"
-            to="https://docs.hoppscotch.io/features/collections"
-            blank
-            :title="$t('app.wiki')"
-            svg="help-circle"
-          />
-          <ButtonSecondary
-            v-if="!saveRequest"
-            v-tippy="{ theme: 'tooltip' }"
-            :disabled="
-              collectionsType.type == 'team-collections' &&
-              collectionsType.selectedTeam == undefined
-            "
-            svg="archive"
-            :title="$t('modal.import_export')"
-            @click.native="displayModalImportExport(true)"
-          />
-        </span>
-      </div>
+<!--      <div class="flex flex-1 justify-between">-->
+<!--        <ButtonSecondary-->
+<!--          v-if="-->
+<!--            collectionsType.type == 'team-collections' &&-->
+<!--            (collectionsType.selectedTeam == undefined ||-->
+<!--              collectionsType.selectedTeam.myRole == 'VIEWER')-->
+<!--          "-->
+<!--          v-tippy="{ theme: 'tooltip' }"-->
+<!--          disabled-->
+<!--          class="!rounded-none"-->
+<!--          svg="plus"-->
+<!--          :title="$t('team.no_access')"-->
+<!--          :label="$t('action.new')"-->
+<!--        />-->
+<!--        <ButtonSecondary-->
+<!--          v-else-->
+<!--          svg="plus"-->
+<!--          :label="$t('action.new')"-->
+<!--          class="!rounded-none"-->
+<!--          @click.native="displayModalAdd(true)"-->
+<!--        />-->
+<!--        <span class="flex">-->
+<!--          <ButtonSecondary-->
+<!--            v-tippy="{ theme: 'tooltip' }"-->
+<!--            to="https://docs.hoppscotch.io/features/collections"-->
+<!--            blank-->
+<!--            :title="$t('app.wiki')"-->
+<!--            svg="help-circle"-->
+<!--          />-->
+<!--          <ButtonSecondary-->
+<!--            v-if="!saveRequest"-->
+<!--            v-tippy="{ theme: 'tooltip' }"-->
+<!--            :disabled="-->
+<!--              collectionsType.type == 'team-collections' &&-->
+<!--              collectionsType.selectedTeam == undefined-->
+<!--            "-->
+<!--            svg="archive"-->
+<!--            :title="$t('modal.import_export')"-->
+<!--            @click.native="displayModalImportExport(true)"-->
+<!--          />-->
+<!--        </span>-->
+<!--      </div>-->
     </div>
     <div class="flex flex-col">
       <component
@@ -136,55 +136,56 @@
         {{ $t("state.nothing_found") }} "{{ filterText }}"
       </span>
     </div>
-    <CollectionsAdd
-      :show="showModalAdd"
-      @submit="addNewRootCollection"
-      @hide-modal="displayModalAdd(false)"
-    />
-    <CollectionsEdit
-      :show="showModalEdit"
-      :editing-collection-name="
-        editingCollection
-          ? editingCollection.name || editingCollection.title
-          : ''
-      "
-      @hide-modal="displayModalEdit(false)"
-      @submit="updateEditingCollection"
-    />
-    <CollectionsAddFolder
-      :show="showModalAddFolder"
-      :folder="editingFolder"
-      :folder-path="editingFolderPath"
-      @add-folder="onAddFolder($event)"
-      @hide-modal="displayModalAddFolder(false)"
-    />
-    <CollectionsEditFolder
-      :show="showModalEditFolder"
-      :editing-folder-name="
-        editingFolder ? editingFolder.name || editingFolder.title : ''
-      "
-      @submit="updateEditingFolder"
-      @hide-modal="displayModalEditFolder(false)"
-    />
-    <CollectionsEditRequest
-      :show="showModalEditRequest"
-      :editing-request-name="editingRequest ? editingRequest.name : ''"
-      @submit="updateEditingRequest"
-      @hide-modal="displayModalEditRequest(false)"
-    />
-    <CollectionsImportExport
-      :show="showModalImportExport"
-      :collections-type="collectionsType"
-      @hide-modal="displayModalImportExport(false)"
-      @update-team-collections="updateTeamCollections"
-    />
+<!--    <CollectionsAdd-->
+<!--      :show="showModalAdd"-->
+<!--      @submit="addNewRootCollection"-->
+<!--      @hide-modal="displayModalAdd(false)"-->
+<!--    />-->
+<!--    <CollectionsEdit-->
+<!--      :show="showModalEdit"-->
+<!--      :editing-collection-name="-->
+<!--        editingCollection-->
+<!--          ? editingCollection.name || editingCollection.title-->
+<!--          : ''-->
+<!--      "-->
+<!--      @hide-modal="displayModalEdit(false)"-->
+<!--      @submit="updateEditingCollection"-->
+<!--    />-->
+<!--    <CollectionsAddFolder-->
+<!--      :show="showModalAddFolder"-->
+<!--      :folder="editingFolder"-->
+<!--      :folder-path="editingFolderPath"-->
+<!--      @add-folder="onAddFolder($event)"-->
+<!--      @hide-modal="displayModalAddFolder(false)"-->
+<!--    />-->
+<!--    <CollectionsEditFolder-->
+<!--      :show="showModalEditFolder"-->
+<!--      :editing-folder-name="-->
+<!--        editingFolder ? editingFolder.name || editingFolder.title : ''-->
+<!--      "-->
+<!--      @submit="updateEditingFolder"-->
+<!--      @hide-modal="displayModalEditFolder(false)"-->
+<!--    />-->
+<!--    <CollectionsEditRequest-->
+<!--      :show="showModalEditRequest"-->
+<!--      :editing-request-name="editingRequest ? editingRequest.name : ''"-->
+<!--      @submit="updateEditingRequest"-->
+<!--      @hide-modal="displayModalEditRequest(false)"-->
+<!--    />-->
+<!--    <CollectionsImportExport-->
+<!--      :show="showModalImportExport"-->
+<!--      :collections-type="collectionsType"-->
+<!--      @hide-modal="displayModalImportExport(false)"-->
+<!--      @update-team-collections="updateTeamCollections"-->
+<!--    />-->
   </div>
 </template>
 
 <script>
 import gql from "graphql-tag"
 import cloneDeep from "lodash/cloneDeep"
-import { defineComponent } from "@nuxtjs/composition-api"
+import {defineComponent, ref} from "@nuxtjs/composition-api"
+import axios from "axios"
 import CollectionsMyCollection from "./my/Collection.vue"
 import CollectionsTeamsCollection from "./teams/Collection.vue"
 import { currentUser$ } from "~/helpers/fb/auth"
@@ -219,11 +220,18 @@ export default defineComponent({
   },
   setup() {
     const { subscribeToStream } = useStreamSubscriber()
+    const collections = ref([])
+
+    axios.get("http://localhost:8080").then((res) => {
+      console.log(res)
+      collections.value = res.data
+    })
+    // console.log(collections, "collections")
 
     return {
       subscribeTo: subscribeToStream,
 
-      collections: useReadonlyStream(restCollections$, []),
+      collections: collections,
       currentUser: useReadonlyStream(currentUser$, null),
     }
   },

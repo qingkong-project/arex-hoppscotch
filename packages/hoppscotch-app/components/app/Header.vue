@@ -1,135 +1,135 @@
 <template>
   <div>
-    <header
-      class="flex items-center justify-between flex-1 px-2 py-2 space-x-2"
-    >
-      <div class="inline-flex items-center space-x-2">
-        <ButtonSecondary
-          class="tracking-wide !font-bold !text-secondaryDark hover:bg-primaryDark focus-visible:bg-primaryDark"
-          label="HOPPSCOTCH"
-          to="/"
-        />
-        <AppGitHubStarButton class="mt-1.5 transition <sm:hidden" />
-      </div>
-      <div class="inline-flex items-center space-x-2">
-        <ButtonSecondary
-          id="installPWA"
-          v-tippy="{ theme: 'tooltip' }"
-          :title="t('header.install_pwa')"
-          svg="download"
-          class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"
-          @click.native="showInstallPrompt()"
-        />
-        <ButtonSecondary
-          v-tippy="{ theme: 'tooltip' }"
-          :title="`${t('app.search')} <kbd>/</kbd>`"
-          svg="search"
-          class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"
-          @click.native="invokeAction('modals.search.toggle')"
-        />
-        <ButtonSecondary
-          v-tippy="{ theme: 'tooltip' }"
-          :title="`${t('support.title')} <kbd>?</kbd>`"
-          svg="life-buoy"
-          class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"
-          @click.native="showSupport = true"
-        />
-        <ButtonSecondary
-          v-if="currentUser === null"
-          svg="upload-cloud"
-          :label="t('header.save_workspace')"
-          filled
-          class="hidden md:flex"
-          @click.native="showLogin = true"
-        />
-        <ButtonPrimary
-          v-if="currentUser === null"
-          :label="t('header.login')"
-          @click.native="showLogin = true"
-        />
-        <div v-else class="inline-flex items-center space-x-2">
-          <ButtonPrimary
-            v-tippy="{ theme: 'tooltip' }"
-            :title="t('team.invite_tooltip')"
-            :label="t('team.invite')"
-            svg="user-plus"
-            class="!bg-green-500 !bg-opacity-15 !text-green-500 !hover:bg-opacity-10 !hover:bg-green-400 !hover:text-green-600"
-            @click.native="showTeamsModal = true"
-          />
-          <span class="px-2">
-            <tippy
-              ref="options"
-              interactive
-              trigger="click"
-              theme="popover"
-              arrow
-              :on-shown="() => tippyActions.focus()"
-            >
-              <template #trigger>
-                <ProfilePicture
-                  v-if="currentUser.photoURL"
-                  v-tippy="{
-                    theme: 'tooltip',
-                  }"
-                  :url="currentUser.photoURL"
-                  :alt="currentUser.displayName"
-                  :title="currentUser.displayName"
-                  indicator
-                  :indicator-styles="isOnLine ? 'bg-green-500' : 'bg-red-500'"
-                />
-                <ButtonSecondary
-                  v-else
-                  v-tippy="{ theme: 'tooltip' }"
-                  :title="t('header.account')"
-                  class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"
-                  svg="user"
-                />
-              </template>
-              <div class="flex flex-col px-2 text-tiny">
-                <span class="inline-flex font-semibold truncate">
-                  {{ currentUser.displayName }}
-                </span>
-                <span class="inline-flex truncate text-secondaryLight">
-                  {{ currentUser.email }}
-                </span>
-              </div>
-              <hr />
-              <div
-                ref="tippyActions"
-                class="flex flex-col focus:outline-none"
-                tabindex="0"
-                @keyup.enter="profile.$el.click()"
-                @keyup.s="settings.$el.click()"
-                @keyup.l="logout.$el.click()"
-                @keyup.escape="options.tippy().hide()"
-              >
-                <SmartItem
-                  ref="profile"
-                  to="/profile"
-                  svg="user"
-                  :label="t('navigation.profile')"
-                  :shortcut="['↩']"
-                  @click.native="options.tippy().hide()"
-                />
-                <SmartItem
-                  ref="settings"
-                  to="/settings"
-                  svg="settings"
-                  :label="t('navigation.settings')"
-                  :shortcut="['S']"
-                  @click.native="options.tippy().hide()"
-                />
-                <FirebaseLogout
-                  ref="logout"
-                  :shortcut="['L']"
-                  @confirm-logout="options.tippy().hide()"
-                />
-              </div>
-            </tippy>
-          </span>
-        </div>
-      </div>
-    </header>
+<!--    <header-->
+<!--      class="flex items-center justify-between flex-1 px-2 py-2 space-x-2"-->
+<!--    >-->
+<!--      <div class="inline-flex items-center space-x-2">-->
+<!--        <ButtonSecondary-->
+<!--          class="tracking-wide !font-bold !text-secondaryDark hover:bg-primaryDark focus-visible:bg-primaryDark"-->
+<!--          label="HOPPSCOTCH"-->
+<!--          to="/"-->
+<!--        />-->
+<!--        <AppGitHubStarButton class="mt-1.5 transition <sm:hidden" />-->
+<!--      </div>-->
+<!--      <div class="inline-flex items-center space-x-2">-->
+<!--        <ButtonSecondary-->
+<!--          id="installPWA"-->
+<!--          v-tippy="{ theme: 'tooltip' }"-->
+<!--          :title="t('header.install_pwa')"-->
+<!--          svg="download"-->
+<!--          class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"-->
+<!--          @click.native="showInstallPrompt()"-->
+<!--        />-->
+<!--        <ButtonSecondary-->
+<!--          v-tippy="{ theme: 'tooltip' }"-->
+<!--          :title="`${t('app.search')} <kbd>/</kbd>`"-->
+<!--          svg="search"-->
+<!--          class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"-->
+<!--          @click.native="invokeAction('modals.search.toggle')"-->
+<!--        />-->
+<!--        <ButtonSecondary-->
+<!--          v-tippy="{ theme: 'tooltip' }"-->
+<!--          :title="`${t('support.title')} <kbd>?</kbd>`"-->
+<!--          svg="life-buoy"-->
+<!--          class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"-->
+<!--          @click.native="showSupport = true"-->
+<!--        />-->
+<!--        <ButtonSecondary-->
+<!--          v-if="currentUser === null"-->
+<!--          svg="upload-cloud"-->
+<!--          :label="t('header.save_workspace')"-->
+<!--          filled-->
+<!--          class="hidden md:flex"-->
+<!--          @click.native="showLogin = true"-->
+<!--        />-->
+<!--        <ButtonPrimary-->
+<!--          v-if="currentUser === null"-->
+<!--          :label="t('header.login')"-->
+<!--          @click.native="showLogin = true"-->
+<!--        />-->
+<!--        <div v-else class="inline-flex items-center space-x-2">-->
+<!--          <ButtonPrimary-->
+<!--            v-tippy="{ theme: 'tooltip' }"-->
+<!--            :title="t('team.invite_tooltip')"-->
+<!--            :label="t('team.invite')"-->
+<!--            svg="user-plus"-->
+<!--            class="!bg-green-500 !bg-opacity-15 !text-green-500 !hover:bg-opacity-10 !hover:bg-green-400 !hover:text-green-600"-->
+<!--            @click.native="showTeamsModal = true"-->
+<!--          />-->
+<!--          <span class="px-2">-->
+<!--            <tippy-->
+<!--              ref="options"-->
+<!--              interactive-->
+<!--              trigger="click"-->
+<!--              theme="popover"-->
+<!--              arrow-->
+<!--              :on-shown="() => tippyActions.focus()"-->
+<!--            >-->
+<!--              <template #trigger>-->
+<!--                <ProfilePicture-->
+<!--                  v-if="currentUser.photoURL"-->
+<!--                  v-tippy="{-->
+<!--                    theme: 'tooltip',-->
+<!--                  }"-->
+<!--                  :url="currentUser.photoURL"-->
+<!--                  :alt="currentUser.displayName"-->
+<!--                  :title="currentUser.displayName"-->
+<!--                  indicator-->
+<!--                  :indicator-styles="isOnLine ? 'bg-green-500' : 'bg-red-500'"-->
+<!--                />-->
+<!--                <ButtonSecondary-->
+<!--                  v-else-->
+<!--                  v-tippy="{ theme: 'tooltip' }"-->
+<!--                  :title="t('header.account')"-->
+<!--                  class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"-->
+<!--                  svg="user"-->
+<!--                />-->
+<!--              </template>-->
+<!--              <div class="flex flex-col px-2 text-tiny">-->
+<!--                <span class="inline-flex font-semibold truncate">-->
+<!--                  {{ currentUser.displayName }}-->
+<!--                </span>-->
+<!--                <span class="inline-flex truncate text-secondaryLight">-->
+<!--                  {{ currentUser.email }}-->
+<!--                </span>-->
+<!--              </div>-->
+<!--              <hr />-->
+<!--              <div-->
+<!--                ref="tippyActions"-->
+<!--                class="flex flex-col focus:outline-none"-->
+<!--                tabindex="0"-->
+<!--                @keyup.enter="profile.$el.click()"-->
+<!--                @keyup.s="settings.$el.click()"-->
+<!--                @keyup.l="logout.$el.click()"-->
+<!--                @keyup.escape="options.tippy().hide()"-->
+<!--              >-->
+<!--                <SmartItem-->
+<!--                  ref="profile"-->
+<!--                  to="/profile"-->
+<!--                  svg="user"-->
+<!--                  :label="t('navigation.profile')"-->
+<!--                  :shortcut="['↩']"-->
+<!--                  @click.native="options.tippy().hide()"-->
+<!--                />-->
+<!--                <SmartItem-->
+<!--                  ref="settings"-->
+<!--                  to="/settings"-->
+<!--                  svg="settings"-->
+<!--                  :label="t('navigation.settings')"-->
+<!--                  :shortcut="['S']"-->
+<!--                  @click.native="options.tippy().hide()"-->
+<!--                />-->
+<!--                <FirebaseLogout-->
+<!--                  ref="logout"-->
+<!--                  :shortcut="['L']"-->
+<!--                  @confirm-logout="options.tippy().hide()"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </tippy>-->
+<!--          </span>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </header>-->
     <AppAnnouncement v-if="!isOnLine" />
     <FirebaseLogin :show="showLogin" @hide-modal="showLogin = false" />
     <AppSupport :show="showSupport" @hide-modal="showSupport = false" />
@@ -185,28 +185,28 @@ onMounted(() => {
   showInstallPrompt.value = intializePwa()
 
   const cookiesAllowed = getLocalConfig("cookiesAllowed") === "yes"
-  if (!cookiesAllowed) {
-    toast.show(`${t("app.we_use_cookies")}`, {
-      duration: 0,
-      action: [
-        {
-          text: `${t("action.learn_more")}`,
-          onClick: (_, toastObject) => {
-            setLocalConfig("cookiesAllowed", "yes")
-            toastObject.goAway(0)
-            window.open("https://docs.hoppscotch.io/privacy", "_blank")?.focus()
-          },
-        },
-        {
-          text: `${t("action.dismiss")}`,
-          onClick: (_, toastObject) => {
-            setLocalConfig("cookiesAllowed", "yes")
-            toastObject.goAway(0)
-          },
-        },
-      ],
-    })
-  }
+  // if (!cookiesAllowed) {
+  //   toast.show(`${t("app.we_use_cookies")}`, {
+  //     duration: 0,
+  //     action: [
+  //       {
+  //         text: `${t("action.learn_more")}`,
+  //         onClick: (_, toastObject) => {
+  //           setLocalConfig("cookiesAllowed", "yes")
+  //           toastObject.goAway(0)
+  //           window.open("https://docs.hoppscotch.io/privacy", "_blank")?.focus()
+  //         },
+  //       },
+  //       {
+  //         text: `${t("action.dismiss")}`,
+  //         onClick: (_, toastObject) => {
+  //           setLocalConfig("cookiesAllowed", "yes")
+  //           toastObject.goAway(0)
+  //         },
+  //       },
+  //     ],
+  //   })
+  // }
 })
 
 // Template refs
