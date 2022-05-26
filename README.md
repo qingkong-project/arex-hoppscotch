@@ -1,5 +1,9 @@
 # arex-hoppscotch
 
+## hoppscotch
+该项目fork开源项目[hoppscotch v2.2.1](https://github.com/hoppscotch/hoppscotch/releases/tag/v2.2.1)
+
+
 ## 开发环境
 
 node v16.15.0
