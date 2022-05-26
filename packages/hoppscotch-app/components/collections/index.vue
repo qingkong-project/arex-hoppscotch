@@ -222,10 +222,74 @@ export default defineComponent({
     const { subscribeToStream } = useStreamSubscriber()
     const collections = ref([])
 
-    axios.get("http://localhost:8080").then((res) => {
-      console.log(res)
-      collections.value = res.data
-    })
+    // axios.get("http://localhost:8080").then((res) => {
+    //   console.log(res)
+    //   collections.value = res.data
+    // })
+    collections.value = [
+      {
+        "name": "devops",
+        "folders": [],
+        "requests": [
+          {
+            "v": "1",
+            "endpoint": "http://devops.flight.ctripcorp.com/api/baseapi/getWfInstanceByUser",
+            "name": "devs获取审批列表",
+            "params": [
+              {
+                "key": "current",
+                "value": "3",
+                "active": true
+              },
+              {
+                "active": true,
+                "key": "pageSize",
+                "value": "2"
+              }
+            ],
+            "headers": [
+              {
+                "active": true,
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3ZWNoYXRJZCI6Im9VM3BMNU1zM29ndDM4eEFjZ0lOS3owRUNseVUiLCJfaWQiOiI2MGY0M2Q3NjhmNzA1NTJkMWFhNGUzOGMiLCJpYXQiOjE2MzM3NTk1NTMsImV4cCI6MTYzMzc2MzE1M30.fs_CPA7gIsVAkk64_qco7CSn2_mDub2r_np-h0p25Rk",
+                "key": "token"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "authType": "bearer",
+              "authActive": true,
+              "token": ""
+            },
+            "preRequestScript": "const a = 1",
+            "testScript": "\n\n// Check status code is 200\npw.test(\"Status code is 200\", ()=> {\n    pw.expect(pw.response.status).toBe(200);\n});",
+            "body": {
+              "body": "{\n  \"approvers\": [\n    {\n      \"objectId\": \"1\",\n      \"objectType\": \"1\"\n    },\n    {\n      \"objectId\": \"10009\",\n      \"objectType\": \"1\"\n    },\n    {\n      \"objectId\": \"90\",\n      \"objectType\": \"3\"\n    },\n    {\n      \"objectId\": \"365\",\n      \"objectType\": \"3\"\n    },\n    {\n      \"objectId\": \"402\",\n      \"objectType\": \"3\"\n    }\n  ],\n  \"eid\": \"tzhangm\",\n  \"filterType\": 0,\n  \"flName\": \"\",\n  \"instanceId\": 0,\n  \"keyword\": \"\",\n  \"pageCount\": 10,\n  \"pageIndex\": 1,\n  \"processStateName\": \"\",\n  \"startDate\": \"\",\n  \"endDate\": \"\",\n  \"statusName\": \"\",\n  \"createOn\": null\n}",
+              "contentType": "application/json"
+            }
+          },
+          {
+            "v": "1",
+            "endpoint": "http://devops.flight.ctripcorp.com/api/email/getCardStagePriority",
+            "name": "研发效能-获取阶段占比",
+            "params": [],
+            "headers": [],
+            "method": "POST",
+            "auth": {
+              "authType": "bearer",
+              "authActive": true,
+              "token": ""
+            },
+            "preRequestScript": "const a = 1",
+            "testScript": "\n\n// Check status code is 200\npw.test(\"Status code is 200\", ()=> {\n    pw.expect(pw.response.status).toBe(200);\n});",
+            "body": {
+              "body": "{\n  \"startTime\": \"2022-04-26 00:00:00\",\n  \"endTime\": \"2022-05-26 23:59:59\",\n  \"prdType\": \"5\",\n  \"productLineId\": 3,\n  \"collectionIds\": [\n    10000174\n  ],\n  \"groupIds\": [],\n  \"filterType\": 0,\n  \"priority\": \"\",\n  \"idev\": true,\n  \"type\": 1,\n  \"orgId\": 43\n}",
+              "contentType": "application/json"
+            }
+          }
+        ],
+        "v": 1
+      }
+    ]
     // console.log(collections, "collections")
 
     return {
