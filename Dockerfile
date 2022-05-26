@@ -1,13 +1,5 @@
 FROM node:lts-alpine
 
-LABEL maintainer="Hoppscotch (support@hoppscotch.io)"
-
-# Add git as the prebuild target requires it to parse version information
-RUN apk add --no-cache --virtual .gyp \
-  python3 \
-  make \
-  g++
-
 # Create app directory
 WORKDIR /app
 
@@ -15,9 +7,9 @@ ADD . /app/
 
 COPY . .
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm --registry http://registry.npm.release.ctripcorp.com
 
-RUN pnpm i --unsafe-perm=true
+RUN pnpm i --unsafe-perm=true --registry http://registry.npm.release.ctripcorp.com
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
