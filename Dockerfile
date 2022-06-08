@@ -7,9 +7,9 @@ ADD . /app/
 
 COPY . .
 
-RUN npm install -g pnpm --registry=https://registry.npm.taobao.org
+RUN npm install -g pnpm
 
-RUN pnpm i --unsafe-perm=true --registry=https://registry.npm.taobao.org
+RUN pnpm i --unsafe-perm=true
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
