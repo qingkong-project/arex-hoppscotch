@@ -20,3 +20,7 @@ pnpm run dev
 ## 提交代码
 
 fork的hoppscotch，含有commit检查，可使用 git commit -m "添加readme" --no-verify 忽略
+
+## 打包docker镜像
+
+直接push到github上，github action会自动构建镜像并推送到dockerhub上
