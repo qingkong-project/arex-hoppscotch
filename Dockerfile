@@ -7,9 +7,9 @@ ADD . /app/
 
 COPY . .
 
-RUN npm install -g pnpm --registry http://registry.npm.release.ctripcorp.com
+RUN npm install -g pnpm --registry=https://registry.npm.taobao.org
 
-RUN pnpm i --unsafe-perm=true --registry http://registry.npm.release.ctripcorp.com
+RUN pnpm i --unsafe-perm=true --registry=https://registry.npm.taobao.org
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
