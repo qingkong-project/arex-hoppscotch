@@ -1,4 +1,5 @@
 <template>
+<div>
   <Splitpanes
     class="smart-splitter"
     :rtl="SIDEBAR_ON_LEFT && windowInnerWidth.x.value >= 768"
@@ -7,13 +8,47 @@
     }"
     :horizontal="!(windowInnerWidth.x.value >= 768)"
   >
-    <Pane size="75" min-size="65" class="hide-scrollbar !overflow-auto">
+
+
+
+    <Pane size="10" style="margin: 10px">
+      <div class="relative flex">
+        <label for="method">
+          <tippy
+            ref="methodOptions"
+            interactive
+            trigger="click"
+            theme="popover"
+            arrow
+          >
+            <template #trigger>
+              <span class="select-wrapper">
+                <input
+                  id="method"
+                  class="flex px-4 py-2 font-semibold border rounded-l cursor-pointer bg-primaryLight border-divider text-secondaryDark w-32 hover:border-dividerDark focus-visible:bg-transparent focus-visible:border-dividerDark"
+                  :value="arexType"
+                  :readonly="true"
+                  :placeholder="'ssss'"
+                />
+              </span>
+            </template>
+            <SmartItem
+              v-for="(method, index) in arexTypes"
+              :key="`method-${index}`"
+              :label="method"
+              @click.native="onSelectArexType(method)"
+            />
+          </tippy>
+        </label>
+      </div>
+    </Pane>
+
+    <Pane size="30">
       <Splitpanes class="smart-splitter" :horizontal="COLUMN_LAYOUT">
         <Pane
           :size="COLUMN_LAYOUT ? 45 : 50"
           class="hide-scrollbar !overflow-auto"
         >
-          <div>133</div>
           <HttpRequest />
           <SmartTabs styles="sticky bg-primary top-upperPrimaryStickyFold z-10">
             <SmartTab
@@ -71,6 +106,72 @@
         </Pane>
       </Splitpanes>
     </Pane>
+    <Pane size="30" v-if="arexType==='比对接口测试'">
+      <Splitpanes class="smart-splitter" :horizontal="COLUMN_LAYOUT">
+        <Pane
+          :size="COLUMN_LAYOUT ? 45 : 50"
+          class="hide-scrollbar !overflow-auto"
+        >
+          <HttpRequest />
+          <SmartTabs styles="sticky bg-primary top-upperPrimaryStickyFold z-10">
+            <SmartTab
+              :id="'params'"
+              :label="`${$t('tab.parameters')}`"
+              :selected="true"
+              :info="`${newActiveParamsCount$}`"
+            >
+              <HttpParameters />
+            </SmartTab>
+
+            <SmartTab :id="'bodyParams'" :label="`${$t('tab.body')}`">
+              <HttpBody />
+            </SmartTab>
+
+            <SmartTab
+              :id="'headers'"
+              :label="`${$t('tab.headers')}`"
+              :info="`${newActiveHeadersCount$}`"
+            >
+              <HttpHeaders />
+            </SmartTab>
+
+            <SmartTab
+              :id="'authorization'"
+              :label="`${$t('tab.authorization')}`"
+            >
+              <HttpAuthorization />
+            </SmartTab>
+
+            <SmartTab
+              :id="'preRequestScript'"
+              :label="`${$t('tab.pre_request_script')}`"
+              :indicator="
+                preRequestScript && preRequestScript.length > 0 ? true : false
+              "
+            >
+              <HttpPreRequestScript />
+            </SmartTab>
+
+            <SmartTab
+              :id="'tests'"
+              :label="`${$t('tab.tests')}`"
+              :indicator="testScript && testScript.length > 0 ? true : false"
+            >
+              <HttpTests />
+            </SmartTab>
+          </SmartTabs>
+        </Pane>
+        <Pane
+          :size="COLUMN_LAYOUT ? 65 : 50"
+          class="flex flex-col hide-scrollbar !overflow-auto"
+        >
+          <HttpResponse ref="response" />
+        </Pane>
+      </Splitpanes>
+    </Pane>
+
+
+
     <Pane
       v-if="SIDEBAR"
       size="25"
@@ -112,6 +213,7 @@
       @resolve="syncRequest"
     />
   </Splitpanes>
+</div>
 </template>
 
 <script lang="ts">
@@ -246,6 +348,16 @@ export default defineComponent({
     setupRequestSync(confirmSync, requestForSync)
     bindRequestToURLParams()
 
+    // zhangtao25 修改
+
+    const arexTypes = ref(['常规接口测试','比对接口测试'])
+    const arexType = ref('比对接口测试')
+    function onSelectArexType(type:any) {
+      arexType.value = type
+      methodOptions.value.tippy().hide()
+    }
+    const methodOptions = ref<any | null>(null)
+
     return {
       windowInnerWidth: useWindowSize(),
       newActiveParamsCount$: useReadonlyStream(
@@ -275,6 +387,10 @@ export default defineComponent({
       requestForSync,
       testScript,
       preRequestScript,
+      arexTypes,
+      arexType,
+      onSelectArexType,
+      methodOptions
     }
   },
 })

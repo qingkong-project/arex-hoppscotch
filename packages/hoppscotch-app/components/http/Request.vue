@@ -84,30 +84,14 @@
             @keyup.delete="clearAll.$el.click()"
             @keyup.escape="sendOptions.tippy().hide()"
           >
-            <SmartItem
-              ref="curl"
-              :label="`${t('import.curl')}`"
-              svg="file-code"
-              :shortcut="['C']"
-              @click.native="
+                        <SmartItem
+                          :label="'发送比对测试'"
+                          svg="file-code"
+                          @click.native="
                 () => {
-                  showCurlImportModal = !showCurlImportModal
-                  sendOptions.tippy().hide()
                 }
               "
-            />
-            <SmartItem
-              ref="show"
-              :label="`${t('show.code')}`"
-              svg="code-2"
-              :shortcut="['S']"
-              @click.native="
-                () => {
-                  showCodegenModal = !showCodegenModal
-                  sendOptions.tippy().hide()
-                }
-              "
-            />
+                        />
             <SmartItem
               ref="clearAll"
               :label="`${t('action.clear_all')}`"

@@ -1,16 +1,16 @@
 <template>
   <div>
-<!--    <header-->
-<!--      class="flex items-center justify-between flex-1 px-2 py-2 space-x-2"-->
-<!--    >-->
-<!--      <div class="inline-flex items-center space-x-2">-->
-<!--        <ButtonSecondary-->
-<!--          class="tracking-wide !font-bold !text-secondaryDark hover:bg-primaryDark focus-visible:bg-primaryDark"-->
-<!--          label="HOPPSCOTCH"-->
-<!--          to="/"-->
-<!--        />-->
+    <header
+      class="flex items-center justify-between flex-1 px-2 py-2 space-x-2"
+    >
+      <div class="inline-flex items-center space-x-2">
+        <ButtonSecondary
+          class="tracking-wide !font-bold !text-secondaryDark hover:bg-primaryDark focus-visible:bg-primaryDark"
+          label="AREX"
+          to="/"
+        />
 <!--        <AppGitHubStarButton class="mt-1.5 transition <sm:hidden" />-->
-<!--      </div>-->
+      </div>
 <!--      <div class="inline-flex items-center space-x-2">-->
 <!--        <ButtonSecondary-->
 <!--          id="installPWA"-->
@@ -129,7 +129,7 @@
 <!--          </span>-->
 <!--        </div>-->
 <!--      </div>-->
-<!--    </header>-->
+    </header>
     <AppAnnouncement v-if="!isOnLine" />
     <FirebaseLogin :show="showLogin" @hide-modal="showLogin = false" />
     <AppSupport :show="showSupport" @hide-modal="showSupport = false" />

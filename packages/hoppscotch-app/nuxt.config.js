@@ -6,7 +6,7 @@ require("dotenv").config()
 // Common options
 export const options = {
   name: "Hoppscotch",
-  shortDescription: "Open source API development ecosystem",
+  shortDescription: "AREX",
   description:
     "Helps you create requests faster, saving precious time on development.",
   keywords:
@@ -103,7 +103,7 @@ export default {
     "~/plugins/vue-apollo",
     "~/plugins/init-fb.ts",
     "~/plugins/crisp",
-    { src: "~/plugins/web-worker", ssr: false },
+    { src: "~/plugins/web-worker", ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
