@@ -13,6 +13,11 @@ node v16.15.0
 ## 安装依赖
 pnpm i
 
+## 起不来的问题
+- npm install sentry-cli失败的解决方案。 \
+npm set ENTRYCLI_CDNURL=https://cdn.npm.taobao.org/dist/sentry-cli \
+npm set sentrycli_cdnurl=https://cdn.npm.taobao.org/dist/sentry-cli
+
 ## 启动命令
 
 pnpm run dev
@@ -24,3 +29,4 @@ fork的hoppscotch，含有commit检查，可使用 git commit -m "添加readme" 
 ## 打包docker镜像
 
 直接push到github上，github action会自动构建镜像并推送到dockerhub上
+
